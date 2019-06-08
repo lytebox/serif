@@ -1,0 +1,47 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+{{#if wantStyleJs}}
+import { {{ properCase name }}Container } from './style';
+
+{{/if}}
+class {{ properCase name }} extends React.{{ type }} {
+render() {
+return (
+{{#if wantStyleJs}}
+<{{ properCase name }}Container>
+  {/*Todo : Create {{ properCase name }}*/}
+</{{ properCase name }}Container>
+{{else}}
+<div>
+  {/*Todo : Create {{ properCase name }}*/}
+</div>
+{{/if}}
+);
+}
+}
+
+{{ properCase name }}.propTypes = {
+
+};
+
+{{#if wantActionsAndReducer}}
+function mapStateToProps(state) {
+return {
+
+};
+}
+{{/if}}
+
+function mapDispatchToProps(dispatch) {
+return {
+dispatch,
+};
+}
+
+{{#if wantActionsAndReducer}}
+export default connect(mapStateToProps, mapDispatchToProps)({{ properCase name }});
+{{else}}
+export default connect(null, mapDispatchToProps)({{ properCase name }});
+{{/if}}
