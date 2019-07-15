@@ -1,10 +1,10 @@
 import { createStore, combineReducers } from "redux";
 // import reducers here
-import helloReducer from "./components/HelloWorld/reducer";
+import lyricReducer from "./reducers/lyricReducer";
 
 const store = createStore(
   combineReducers({
-    helloReducer: helloReducer
+    lyric: lyricReducer
   }),
   {}
 );
