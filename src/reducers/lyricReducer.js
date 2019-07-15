@@ -1,34 +1,27 @@
 const initialState = {
-  songList: [{ title: "Ini contoh judul", lyric: "Ini contoh lirik" }],
+  songList: [],
   currentSong: [],
-  currentIndex: 0
+  currentIndex: 0,
+  test: ""
 };
 
 const lyricReducer = (state = initialState, action) => {
+  console.log("Masuk reducer", action.payload);
   switch (action.type) {
     case "INPUT_SONG":
-      let song = {
-        title: action.payload.songTitle,
-        lyric: action.payload.songLyric
-      };
+      // let newState = { ...state };
+      // newState.songList.push({
+      //   title: action.payload.songTitle,
+      //   lyric: action.payload.songLyric
+      // });
+      // console.log("IINI DIA", newState);
+      // return newState;
       return {
         ...state,
-        currentSong: song
+        test: "Ja"
       };
-    case "NEXT_LYRIC":
-      state = {
-        ...state,
-        currentIndex: state.currentIndex + 1
-      };
-      return state;
-    case "PREV_LYRIC":
-      state = {
-        ...state,
-        currentIndex: state.currentIndex - 1
-      };
-      return state;
     default:
-      return { ...state };
+      return state;
   }
 };
 

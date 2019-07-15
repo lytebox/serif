@@ -34,7 +34,6 @@ class HomePage extends React.Component {
         });
         break;
     }
-    console.log(this.state);
   }
 
   handleSubmit() {
@@ -93,13 +92,13 @@ class HomePage extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+function mapDispatchToProps(dispatch) {
   return {
     inputLyric: song => {
       dispatch(inputLyric(song));
     }
   };
-};
+}
 
 HomePage.propTypes = {};
 
