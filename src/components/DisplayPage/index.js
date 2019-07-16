@@ -1,6 +1,6 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import { DisplayPageContainer } from "./style";
 
@@ -14,9 +14,8 @@ class DisplayPage extends React.Component {
     return (
       <DisplayPageContainer>
         <div className="container">
-          <div className="lyricContainer" coba={this.props.song.length}>
-            <div>{this.props.test}</div>
-            {/* {this.props.song.length > 0 ? "ADA ISINYA" : "STANDBY"} */}
+          <div className="lyricContainer">
+            <div>{this.props.index}</div>
           </div>
         </div>
       </DisplayPageContainer>
@@ -24,14 +23,12 @@ class DisplayPage extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+function mapStateToProps(state) {
   return {
-    song: state.lyric.songList,
-    index: state.lyric.currentIndex,
-    current: state.lyric.currentSong,
-    test: state.lyric.test
+    songs: state.lyric.songList,
+    index: state.lyric.currentIndex
   };
-};
+}
 
 DisplayPage.propTypes = {};
 

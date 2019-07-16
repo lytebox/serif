@@ -6,19 +6,26 @@ const initialState = {
 };
 
 const lyricReducer = (state = initialState, action) => {
-  console.log("Masuk reducer", action.payload);
   switch (action.type) {
     case "INPUT_SONG":
-      // let newState = { ...state };
-      // newState.songList.push({
-      //   title: action.payload.songTitle,
-      //   lyric: action.payload.songLyric
-      // });
-      // console.log("IINI DIA", newState);
-      // return newState;
+      console.log("MASUK", action);
+      let newState = { ...state };
+      let newsong = {
+        title: action.payload.songTitle,
+        lyric: action.payload.songLyric
+      };
+      newState.songList.push(newsong);
+      console.log("returning", newState);
+      return newState;
+    case "NEXT_LYRIC":
       return {
         ...state,
-        test: "Ja"
+        currentIndex: state.currentIndex + 1
+      };
+    case "PREV_LYRIC":
+      return {
+        ...state,
+        currentIndex: state.currentIndex - 1
       };
     default:
       return state;

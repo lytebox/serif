@@ -94,9 +94,7 @@ class HomePage extends React.Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    inputLyric: song => {
-      dispatch(inputLyric(song));
-    }
+    inputLyric: song => dispatch(inputLyric(song))
   };
 }
 
