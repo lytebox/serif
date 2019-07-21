@@ -37,6 +37,7 @@ class HomePage extends React.Component {
   }
 
   handleSubmit() {
+    console.log("ini state", this.state);
     this.props.inputLyric(this.state);
   }
 

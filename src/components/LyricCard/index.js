@@ -34,8 +34,8 @@ class LyricCard extends React.Component {
   }
 }
 
-LyricCard.PropTypes = {
-  text: PropTypes.String
-};
+// LyricCard.PropTypes = {
+//   text: PropTypes.String
+// };
 
 export default LyricCard;

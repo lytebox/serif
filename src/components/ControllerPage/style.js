@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ControllerPageContainer = styled.div`
   margin-left: 3em;
   margin-right: 3em;
+  flex-wrap: wrap;
   .divider {
     flex: 1;
   }

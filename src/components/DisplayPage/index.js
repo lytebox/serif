@@ -15,7 +15,7 @@ class DisplayPage extends React.Component {
       <DisplayPageContainer>
         <div className="container">
           <div className="lyricContainer">
-            <div>{this.props.index}</div>
+            <div>{this.props.songs}</div>
           </div>
         </div>
       </DisplayPageContainer>
@@ -25,7 +25,7 @@ class DisplayPage extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    songs: state.lyric.songList,
+    songs: state.lyric.songList.length,
     index: state.lyric.currentIndex
   };
 }
