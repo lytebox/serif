@@ -27,6 +27,13 @@ class DisplayPage extends React.Component {
   }
 
   render() {
+    const { currentLyric } = this.state;
+    const lyric = currentLyric.startsWith("[")
+      ? currentLyric
+          .split("\n")
+          .slice(1)
+          .join("\n")
+      : currentLyric;
     return (
       <DisplayPageContainer>
         <div className="container">
@@ -35,7 +42,9 @@ class DisplayPage extends React.Component {
             <Watermark />
           </div>
           <div className="lyricContainer">
-            <div>{this.state.currentLyric.toUpperCase()}</div>
+            <div style={{ whiteSpace: "pre-wrap", textAlign: "center" }}>
+              {lyric.toUpperCase()}
+            </div>
           </div>
         </div>
       </DisplayPageContainer>

@@ -5,9 +5,13 @@ import { LyricCardContainer } from "./style";
 
 class LyricCard extends React.Component {
   render() {
-    const { onClick, active } = this.props;
+    const { onClick, active, highlight } = this.props;
     return (
-      <LyricCardContainer active={active} onClick={onClick}>
+      <LyricCardContainer
+        active={active}
+        highlight={highlight}
+        onClick={onClick}
+      >
         {this.props.text}
       </LyricCardContainer>
     );

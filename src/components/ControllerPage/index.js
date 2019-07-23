@@ -92,6 +92,7 @@ class ControllerPage extends React.Component {
                     key={shortid.generate()}
                     onClick={() => this.renderLyric(index)}
                     text={lyric}
+                    highlight={lyric.startsWith("[")}
                     active={this.state.lyricIndex === index}
                   />
                 ))}
@@ -99,7 +100,9 @@ class ControllerPage extends React.Component {
         </SectionContainer>
         <SectionContainer>
           <SectionTitle>Active Lyrics</SectionTitle>
-          <ListContainer>{this.state.showing.toUpperCase()}</ListContainer>
+          <div style={{ whiteSpace: "pre-wrap" }}>
+            {this.state.showing.toUpperCase()}
+          </div>
         </SectionContainer>
       </ControllerPageContainer>
     );

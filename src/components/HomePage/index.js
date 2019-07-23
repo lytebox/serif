@@ -39,7 +39,7 @@ class HomePage extends React.Component {
   }
 
   handleSubmit() {
-    let lyricArray = this.state.songLyric.split("\n");
+    let lyricArray = this.state.songLyric.split("\n\n");
     let newState = {
       ...this.state,
       songLyric: lyricArray
