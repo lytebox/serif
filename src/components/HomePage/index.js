@@ -37,8 +37,12 @@ class HomePage extends React.Component {
   }
 
   handleSubmit() {
-    console.log("ini state", this.state);
-    this.props.inputLyric(this.state);
+    let lyricArray = this.state.songLyric.split("\n");
+    let newState = {
+      ...this.state,
+      songLyric: lyricArray
+    };
+    this.props.inputLyric(newState);
   }
 
   render() {

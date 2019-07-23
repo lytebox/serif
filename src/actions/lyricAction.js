@@ -18,3 +18,10 @@ export function prevLyric(index) {
     payload: index
   };
 }
+
+export function showLyric(lyric) {
+  return {
+    type: "SHOW_LYRIC",
+    payload: lyric
+  };
+}
