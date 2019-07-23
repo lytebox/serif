@@ -2,7 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { ControllerPageContainer } from "./style";
+import {
+  ControllerPageContainer,
+  SectionContainer,
+  SectionTitle,
+  ListContainer
+} from "./style";
 import LyricCard from "../../components/LyricCard";
 import { showLyric } from "../../actions/lyricAction";
 import shortid from "shortid";
@@ -26,6 +31,15 @@ class ControllerPage extends React.Component {
     });
     this.selectSong = this.selectSong.bind(this);
     this.renderLyric = this.renderLyric.bind(this);
+
+    document.addEventListener("keydown", e => {
+      console.log(e);
+      if (e.key === "ArrowUp") {
+        this.renderLyric(this.state.lyricIndex - 1);
+      } else if (e.key === "ArrowDown") {
+        this.renderLyric(this.state.lyricIndex + 1);
+      }
+    });
   }
 
   selectSong(song) {
@@ -36,61 +50,60 @@ class ControllerPage extends React.Component {
     });
   }
 
-  renderLyric(lyric, index) {
+  renderLyric(index) {
+    if (index < 0 || index > this.state.selectedSong.lyric.length - 1)
+      return false;
+
+    const currentLyric = this.state.selectedSong.lyric[index];
     this.setState({
-      showing: lyric,
+      showing: currentLyric,
       lyricIndex: index
     });
-    this.props.showLyric(lyric);
+    this.props.showLyric(currentLyric);
   }
 
   render() {
     return (
       <ControllerPageContainer>
-        <div className="container">
-          <div className="lyricContainer">
-            <div className="songTitle">Song List</div>
-            <div className="lyrics ">
-              {Object.keys(this.state.songsList).map(songTitle => (
-                <LyricCard
-                  text={songTitle}
-                  key={shortid.generate()}
-                  onClick={() => this.selectSong(songTitle)}
-                  active={this.state.selectedSongTitle === songTitle}
-                />
-              ))}
-            </div>
+        <SectionContainer>
+          <SectionTitle>Song List</SectionTitle>
+          <ListContainer>
+            {Object.keys(this.state.songsList).map(songTitle => (
+              <LyricCard
+                text={songTitle}
+                key={shortid.generate()}
+                onClick={() => this.selectSong(songTitle)}
+                active={this.state.selectedSongTitle === songTitle}
+              />
+            ))}
+          </ListContainer>
+        </SectionContainer>
+        <SectionContainer>
+          <SectionTitle>
+            {this.state.selectedSong.title === undefined
+              ? "Song Title"
+              : this.state.selectedSong.title}
+          </SectionTitle>
+          <ListContainer>
+            {this.state.selectedSong.lyric === undefined
+              ? "Please select song"
+              : this.state.selectedSong.lyric.map((lyric, index) => (
+                  <LyricCard
+                    key={shortid.generate()}
+                    onClick={() => this.renderLyric(index)}
+                    text={lyric}
+                    highlight={lyric.startsWith("[")}
+                    active={this.state.lyricIndex === index}
+                  />
+                ))}
+          </ListContainer>
+        </SectionContainer>
+        <SectionContainer>
+          <SectionTitle>Active Lyrics</SectionTitle>
+          <div style={{ whiteSpace: "pre-wrap" }}>
+            {this.state.showing.toUpperCase()}
           </div>
-          <div className="divider" />
-          <div className="lyricContainer">
-            <div className="songTitle">
-              {this.state.selectedSong.title === undefined
-                ? "Song Title"
-                : this.state.selectedSong.title}
-            </div>
-            <div className="lyrics">
-              {this.state.selectedSong.lyric === undefined
-                ? "Please select song"
-                : this.state.selectedSong.lyric.map((lyric, index) => (
-                    <LyricCard
-                      key={shortid.generate()}
-                      onClick={() => this.renderLyric(lyric, index)}
-                      text={lyric}
-                      active={this.state.lyricIndex === index}
-                    />
-                  ))}
-            </div>
-          </div>
-          <div className="divider" />
-          <div className="currentContainer">
-            <div className="songTitle">Current</div>
-            <div className="currentLyric">
-              {this.state.showing === ""
-                ? "EXAMPLE LYRICS".toUpperCase()
-                : this.state.showing.toUpperCase()}
-            </div>
-          </div>
-        </div>
+        </SectionContainer>
       </ControllerPageContainer>
     );
   }

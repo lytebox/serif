@@ -1,21 +1,10 @@
 import styled from "styled-components";
 
 const ControllerPageContainer = styled.div`
-  margin-left: 3em;
-  margin-right: 3em;
-  flex-wrap: wrap;
+  margin: 0 3em;
+  height: 100%;
   .divider {
     flex: 1;
-  }
-  .container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  .lyricContainer {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
   }
   .songTitle {
     font-weight: bold;
@@ -39,4 +28,26 @@ const ControllerPageContainer = styled.div`
   }
 `;
 
-export { ControllerPageContainer };
+const SectionContainer = styled.div`
+  display: inline-block;
+  width: calc(100% / 3);
+  vertical-align: top;
+  height: 100%;
+`;
+const SectionTitle = styled.div`
+  font-weight: bold;
+`;
+
+const ListContainer = styled.div`
+  height: 100%;
+  max-height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+`;
+
+export {
+  ControllerPageContainer,
+  SectionContainer,
+  SectionTitle,
+  ListContainer
+};

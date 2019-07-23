@@ -10,11 +10,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AppContainer } from "./style";
 
 const WithNavbarContainer = () => (
-  <div>
+  <React.Fragment>
     <Navbar />
     <Route exact path="/" component={HomePage} />
     <Route exact path="/controller" component={ControllerPage} />
-  </div>
+  </React.Fragment>
 );
 
 class App extends React.Component {
