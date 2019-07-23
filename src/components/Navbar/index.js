@@ -23,7 +23,7 @@ class Navbar extends React.Component {
               Display
             </a>
             <Link className="menu" to="/">
-              Logout
+              Sign in
             </Link>
           </div>
         </div>

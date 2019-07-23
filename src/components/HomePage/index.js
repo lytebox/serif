@@ -5,6 +5,7 @@ import { HomePageContainer } from "./style";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { inputLyric } from "../../actions/lyricAction";
 
@@ -57,6 +58,11 @@ class HomePage extends React.Component {
             <div>
               <b>F*ck you easyworship.</b>
             </div>
+          </div>
+          <div className="callToAction">
+            <Link to="/controller" className="ctaButton">
+              Launch controller
+            </Link>
           </div>
           <div className="divider" />
           <div className="inputContainer">

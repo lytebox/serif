@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ControllerPageContainer = styled.div`
+const ControllerPageContainer = styled.div`
   margin-left: 3em;
   margin-right: 3em;
   flex-wrap: wrap;
@@ -19,7 +19,7 @@ export const ControllerPageContainer = styled.div`
   }
   .songTitle {
     font-weight: bold;
-    font-size: 4em;
+    font-size: 2em;
   }
   .lyrics {
     margin-top: 1em;
@@ -38,3 +38,5 @@ export const ControllerPageContainer = styled.div`
     text-align: left;
   }
 `;
+
+export { ControllerPageContainer };

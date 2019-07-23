@@ -13,14 +13,15 @@ class ControllerPage extends React.Component {
     this.state = {
       songsList: {},
       selectedSong: {},
-      showing: ""
+      selectedSongTitle: "",
+      showing: "",
+      lyricIndex: 0
     };
   }
   componentDidMount() {
     let test = JSON.parse(localStorage.getItem("state"));
     let songItems = test.lyric.songList;
     this.setState({
-      ...this.state,
       songsList: songItems
     });
     this.selectSong = this.selectSong.bind(this);
@@ -28,19 +29,19 @@ class ControllerPage extends React.Component {
   }
 
   selectSong(song) {
-    let selectedSong = this.state.songsList[song.target.children[0].innerHTML];
+    let selectedSong = this.state.songsList[song];
     this.setState({
-      ...this.state,
-      selectedSong: selectedSong
+      selectedSong: selectedSong,
+      selectedSongTitle: song
     });
   }
 
-  renderLyric(lyric) {
+  renderLyric(lyric, index) {
     this.setState({
-      ...this.state,
-      showing: lyric.target.children[0].innerHTML
+      showing: lyric,
+      lyricIndex: index
     });
-    this.props.showLyric(lyric.target.children[0].innerHTML);
+    this.props.showLyric(lyric);
   }
 
   render() {
@@ -51,9 +52,12 @@ class ControllerPage extends React.Component {
             <div className="songTitle">Song List</div>
             <div className="lyrics ">
               {Object.keys(this.state.songsList).map(songTitle => (
-                <div key={shortid.generate()} onClick={this.selectSong}>
-                  <LyricCard text={songTitle} key={shortid.generate()} />
-                </div>
+                <LyricCard
+                  text={songTitle}
+                  key={shortid.generate()}
+                  onClick={() => this.selectSong(songTitle)}
+                  active={this.state.selectedSongTitle === songTitle}
+                />
               ))}
             </div>
           </div>
@@ -67,10 +71,13 @@ class ControllerPage extends React.Component {
             <div className="lyrics">
               {this.state.selectedSong.lyric === undefined
                 ? "Please select song"
-                : this.state.selectedSong.lyric.map(lyrics => (
-                    <div key={shortid.generate()} onClick={this.renderLyric}>
-                      <LyricCard text={lyrics} />
-                    </div>
+                : this.state.selectedSong.lyric.map((lyric, index) => (
+                    <LyricCard
+                      key={shortid.generate()}
+                      onClick={() => this.renderLyric(lyric, index)}
+                      text={lyric}
+                      active={this.state.lyricIndex === index}
+                    />
                   ))}
             </div>
           </div>

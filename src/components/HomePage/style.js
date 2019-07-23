@@ -18,6 +18,23 @@ export const HomePageContainer = styled.div`
     padding-top: 1em;
     font-size: 2em;
   }
+  .callToAction {
+    margin: 3em 0;
+  }
+  .ctaButton {
+    font-size: 2em;
+    color: #fff;
+    background: #222;
+    padding: 0.5em 2em;
+    border: 1px solid #333;
+    border-radius: 1em;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .ctaButton:hover {
+    background-color: transparent;
+    color: #222;
+  }
   .divider {
     flex: 0.2;
   }
@@ -35,5 +52,8 @@ export const HomePageContainer = styled.div`
   .formContainer {
     padding-bottom: 2em;
     padding-top: 1em;
+  }
+  .hidden {
+    display: none;
   }
 `;

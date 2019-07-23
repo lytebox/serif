@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const NavbarContainer = styled.div`
   .container {
     display: flex;
-    background: #fdfdfd;
-    height: 5em;
+    background: #fafafa;
     flex-wrap: wrap;
   }
 
@@ -20,7 +19,6 @@ export const NavbarContainer = styled.div`
   .menu {
     color: #010101;
     text-decoration: none;
-    font-size: 2em;
     padding: 1em;
   }
   .menu:hover {
