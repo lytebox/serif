@@ -31,6 +31,15 @@ class ControllerPage extends React.Component {
     });
     this.selectSong = this.selectSong.bind(this);
     this.renderLyric = this.renderLyric.bind(this);
+
+    document.addEventListener("keydown", e => {
+      console.log(e);
+      if (e.key === "ArrowUp") {
+        this.renderLyric(this.state.lyricIndex - 1);
+      } else if (e.key === "ArrowDown") {
+        this.renderLyric(this.state.lyricIndex + 1);
+      }
+    });
   }
 
   selectSong(song) {
@@ -41,12 +50,16 @@ class ControllerPage extends React.Component {
     });
   }
 
-  renderLyric(lyric, index) {
+  renderLyric(index) {
+    if (index < 0 || index > this.state.selectedSong.lyric.length - 1)
+      return false;
+
+    const currentLyric = this.state.selectedSong.lyric[index];
     this.setState({
-      showing: lyric,
+      showing: currentLyric,
       lyricIndex: index
     });
-    this.props.showLyric(lyric);
+    this.props.showLyric(currentLyric);
   }
 
   render() {
@@ -77,7 +90,7 @@ class ControllerPage extends React.Component {
               : this.state.selectedSong.lyric.map((lyric, index) => (
                   <LyricCard
                     key={shortid.generate()}
-                    onClick={() => this.renderLyric(lyric, index)}
+                    onClick={() => this.renderLyric(index)}
                     text={lyric}
                     active={this.state.lyricIndex === index}
                   />
