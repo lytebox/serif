@@ -13,7 +13,8 @@ class HomePage extends React.Component {
     super(props);
     this.state = {
       songTitle: "",
-      songLyric: ""
+      songLyric: "",
+      hasSubmitted: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
