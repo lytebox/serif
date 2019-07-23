@@ -6,7 +6,6 @@ const initialState = {
 };
 
 const lyricReducer = (state = initialState, action) => {
-  console.log("Action", action);
   switch (action.type) {
     case "INPUT_SONG":
       let newState = { ...state };
