@@ -38,6 +38,16 @@ class ControllerPage extends React.Component {
         this.renderLyric(this.state.lyricIndex - 1);
       } else if (e.key === "ArrowDown") {
         this.renderLyric(this.state.lyricIndex + 1);
+      } else if (e.key === "c" && e.ctrlKey && !e.altKey && !e.shiftKey) {
+        // toggle clear lyrics
+        if (this.state.showing.length < 1) {
+          // show lyrics
+          this.renderLyric(this.state.lyricIndex);
+        } else {
+          // clear lyrics
+          this.setState({ showing: "" });
+          this.props.showLyric("");
+        }
       }
     });
   }
