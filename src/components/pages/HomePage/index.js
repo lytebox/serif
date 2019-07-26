@@ -5,9 +5,11 @@ import {
   FullSlide,
   FullSlideContent,
   HeroSlide,
+  HeroSlideContent,
   HeroHeading
 } from "./style";
 import { Button } from "../../common";
+import { Grid, Col } from "../../layout";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -55,16 +57,25 @@ class HomePage extends React.Component {
     return (
       <HomePageContainer>
         <HeroSlide>
-          <FullSlideContent>
-            <HeroHeading>
-              One platform
-              <br />
-              Endless possibilities.
-            </HeroHeading>
-            <Button invert large outline>
-              Launch Controller
-            </Button>
-          </FullSlideContent>
+          <HeroSlideContent>
+            <Grid justify="center" text="left">
+              <Col lg={6} md={12} sm={12}>
+                <HeroHeading>
+                  One platform,
+                  <br />
+                  Endless possibilities.
+                </HeroHeading>
+                <Link to="/controller">
+                  <Button invert large outline>
+                    Launch Controller
+                  </Button>
+                </Link>
+              </Col>
+              <Col lg={6} md={12} sm={12}>
+                {/* Insert image / decoration here */}
+              </Col>
+            </Grid>
+          </HeroSlideContent>
         </HeroSlide>
       </HomePageContainer>
     );

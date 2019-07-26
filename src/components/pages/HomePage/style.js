@@ -8,6 +8,7 @@ const HomePageContainer = styled.div`
 const FullSlide = styled.div`
   height: 100vh;
   display: block;
+  padding: 0 10%;
 `;
 
 const FullSlideContent = styled.div`
@@ -18,6 +19,8 @@ const FullSlideContent = styled.div`
 const HeroSlide = styled.div`
   height: 90vh;
   display: block;
+  padding: 0 10%;
+  color: ${theme.white};
   background-color: ${theme.blue};
   background-image: url("/static/images/background/wave1i.svg");
   background-repeat: no-repeat;
@@ -25,10 +28,13 @@ const HeroSlide = styled.div`
   background-size: 101% auto;
 `;
 
+const HeroSlideContent = styled.div`
+  padding-top: 14em;
+`;
+
 const HeroHeading = styled.h1`
   color: ${theme.white};
   font-size: 4em;
-  padding-top: 3.5em;
   margin: 0;
   line-height: 1.2em;
   margin-bottom: 1em;
@@ -39,5 +45,6 @@ export {
   FullSlide,
   FullSlideContent,
   HeroSlide,
+  HeroSlideContent,
   HeroHeading
 };
