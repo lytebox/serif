@@ -4,6 +4,7 @@ import {
   HomePageContainer,
   FullSlide,
   FullSlideContent,
+  HeroSlide,
   HeroHeading
 } from "./style";
 import { Button } from "../../common";
@@ -53,7 +54,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <HomePageContainer>
-        <FullSlide backgroundURL="/static/images/background/wave1.svg">
+        <HeroSlide>
           <FullSlideContent>
             <HeroHeading>
               One platform
@@ -64,7 +65,7 @@ class HomePage extends React.Component {
               Launch Controller
             </Button>
           </FullSlideContent>
-        </FullSlide>
+        </HeroSlide>
       </HomePageContainer>
     );
   }
