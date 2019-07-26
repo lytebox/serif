@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Normalize } from "styled-normalize";
 import HomePage from "../../components/pages/HomePage";
 import DisplayPage from "../../components/pages/DisplayPage";
 import ControllerPage from "../../components/pages/ControllerPage";
@@ -21,6 +22,7 @@ class App extends React.Component {
   render() {
     return (
       <AppContainer>
+        <Normalize />
         <Router>
           <Switch>
             <Route exact path="/display" component={DisplayPage} />
