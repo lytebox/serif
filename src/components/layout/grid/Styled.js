@@ -5,8 +5,7 @@ const GridWrapper = styled.div`
   display: flex;
   justify-content: left;
   flex-wrap: wrap;
-  margin-left: -16px;
-  margin-right: -16px;
+  width: 100%;
   ${props =>
     props.align
       ? css`
@@ -37,7 +36,8 @@ const ColWrapper = styled.div`
   ${props =>
     props.lg
       ? css`
-          display: inline-block;
+          display: flex;
+          flex-direction: column;
           flex-basis: unset;
           width: ${props.lg ? `${(props.lg / 12) * 100}%` : null};
           ${
@@ -54,7 +54,8 @@ const ColWrapper = styled.div`
     props.md
       ? css`
           ${MaxWidth.md`
-            display: inline-block;
+            display: flex;
+            flex-direction: column;
             flex-basis: unset;
             width: ${props.md ? `${(props.md / 12) * 100}%` : null};
             ${
@@ -71,7 +72,8 @@ const ColWrapper = styled.div`
     props.sm
       ? css`
           ${MaxWidth.sm`
-            display: inline-block;
+            display: flex;
+            flex-direction: column;
             flex-basis: unset;
             width: ${props.sm ? `${(props.sm / 12) * 100}%` : null};
             ${
@@ -88,7 +90,8 @@ const ColWrapper = styled.div`
     props.xs
       ? css`
           ${MaxWidth.xs`
-            display: inline-block;
+            display: flex;
+            flex-direction: column;
             flex-basis: unset;
             width: ${props.xs ? `${(props.xs / 12) * 100}%` : null};
             ${

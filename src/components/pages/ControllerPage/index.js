@@ -8,7 +8,8 @@ import {
   SectionTitle,
   ListContainer
 } from "./style";
-import LyricCard from "../../../components/common/LyricCard";
+import { Grid, Col } from "../../layout";
+import { Card, CardHeading, LyricCard } from "../../common";
 import { showLyric } from "../../../actions/lyricAction";
 import shortid from "shortid";
 
@@ -74,6 +75,30 @@ class ControllerPage extends React.Component {
 
   render() {
     return (
+      <ControllerPageContainer>
+        <Grid>
+          <Col lg={4} md={4} sm={12}>
+            <Card>
+              <CardHeading>Song List</CardHeading>
+            </Card>
+          </Col>
+          <Col lg={4} md={4} sm={12}>
+            <Card>
+              <CardHeading>Song Title</CardHeading>
+            </Card>
+          </Col>
+          <Col lg={4} md={4} sm={12}>
+            <Card>
+              <CardHeading>Now Showing</CardHeading>
+            </Card>
+            <Card>
+              <CardHeading>Properties</CardHeading>
+            </Card>
+          </Col>
+        </Grid>
+      </ControllerPageContainer>
+    );
+    const x = (
       <ControllerPageContainer>
         <SectionContainer>
           <SectionTitle>Song List</SectionTitle>

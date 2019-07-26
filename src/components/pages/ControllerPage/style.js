@@ -1,8 +1,12 @@
 import styled from "styled-components";
+import theme from "../../../theme";
 
 const ControllerPageContainer = styled.div`
-  margin: 0 3em;
-  height: 100%;
+  padding: 0 3em;
+  display: flex;
+  flex-grow: 1;
+  background-color: ${theme.blue};
+
   .divider {
     flex: 1;
   }

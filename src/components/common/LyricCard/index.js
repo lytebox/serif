@@ -22,4 +22,4 @@ class LyricCard extends React.Component {
 //   text: PropTypes.String
 // };
 
-export default LyricCard;
+export { LyricCard };
