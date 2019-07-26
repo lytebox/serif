@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { DisplayPageContainer } from "./style";
-import Watermark from "../Watermark";
+import Watermark from "../../common/Watermark";
 
 class DisplayPage extends React.Component {
   constructor(props) {

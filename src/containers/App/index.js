@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import HomePage from "../../components/HomePage";
-import DisplayPage from "../../components/DisplayPage";
-import ControllerPage from "../../components/ControllerPage";
-import Navbar from "../../components/Navbar";
+import HomePage from "../../components/pages/HomePage";
+import DisplayPage from "../../components/pages/DisplayPage";
+import ControllerPage from "../../components/pages/ControllerPage";
+import Navbar from "../../components/common/Navbar";
 // React router
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { AppContainer } from "./style";

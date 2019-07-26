@@ -8,8 +8,8 @@ import {
   SectionTitle,
   ListContainer
 } from "./style";
-import LyricCard from "../../components/LyricCard";
-import { showLyric } from "../../actions/lyricAction";
+import LyricCard from "../../../components/common/LyricCard";
+import { showLyric } from "../../../actions/lyricAction";
 import shortid from "shortid";
 
 class ControllerPage extends React.Component {
