@@ -1,3 +1,3 @@
-import { Grid, Col } from "./grid";
+import { Grid, Col, Row } from "./grid";
 
-export { Grid, Col };
+export { Grid, Col, Row };

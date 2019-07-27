@@ -8,8 +8,14 @@ import {
   SectionTitle,
   ListContainer
 } from "./style";
-import { Grid, Col } from "../../layout";
-import { Card, CardHeading, LyricCard } from "../../common";
+import { Grid, Col, Row } from "../../layout";
+import {
+  Card,
+  CardHeading,
+  SongList,
+  LyricList,
+  LyricCard
+} from "../../common";
 import { showLyric } from "../../../actions/lyricAction";
 import shortid from "shortid";
 
@@ -79,7 +85,30 @@ class ControllerPage extends React.Component {
         <Grid>
           <Col lg={4} md={4} sm={12}>
             <Card>
-              <CardHeading>Song List</CardHeading>
+              <Row>
+                <CardHeading>Song List</CardHeading>
+                <CardHeading>Schedule</CardHeading>
+              </Row>
+              <SongList
+                list={[
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" },
+                  { title: "Song title", author: "Author here" }
+                ]}
+              />
             </Card>
           </Col>
           <Col lg={4} md={4} sm={12}>

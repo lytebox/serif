@@ -106,4 +106,9 @@ const ColWrapper = styled.div`
       : null};
 `;
 
-export { GridWrapper, ColWrapper };
+const RowWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export { GridWrapper, ColWrapper, RowWrapper };

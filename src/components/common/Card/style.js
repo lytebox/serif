@@ -3,12 +3,14 @@ import theme from "../../../theme";
 
 const CardWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
   flex-shrink: 1;
   margin: 1em 2em;
   background: ${theme.white};
   border-radius: 8px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.162902);
+  overflow: hidden;
 `;
 
 const CardHeading = styled.h1`

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { GridWrapper, ColWrapper } from "./Styled";
+import { GridWrapper, ColWrapper, RowWrapper } from "./Styled";
 
 const Grid = ({ children, justify, align, text }) => (
   <GridWrapper justify={justify} align={align} text={text}>
@@ -48,4 +48,14 @@ Col.defaultProps = {
   style: null
 };
 
-export { Grid, Col };
+const Row = ({ children }) => <RowWrapper>{children}</RowWrapper>;
+
+Row.propTypes = {
+  children: PropTypes.node
+};
+
+Row.defaultProps = {
+  children: null
+};
+
+export { Grid, Col, Row };

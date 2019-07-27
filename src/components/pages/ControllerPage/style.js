@@ -6,6 +6,7 @@ const ControllerPageContainer = styled.div`
   display: flex;
   flex-grow: 1;
   background-color: ${theme.blue};
+  max-height: 100%;
 
   .divider {
     flex: 1;
