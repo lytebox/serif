@@ -1,7 +1,7 @@
-export function inputLyric(song) {
+export function inputLyric({ title, author, lyrics, notes }) {
   return {
     type: "INPUT_SONG",
-    payload: song
+    payload: { title, author, lyrics, notes }
   };
 }
 

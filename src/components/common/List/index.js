@@ -2,9 +2,9 @@ import React from "react";
 import { ListContainer, ListWrapper, ListItemWrapper } from "./style";
 
 const SongListItem = props => {
-  const { title, author } = props;
+  const { title, author, active, onClick } = props;
   return (
-    <ListItemWrapper>
+    <ListItemWrapper active={active} onClick={onClick}>
       <h3>{title}</h3>
       <p>{author}</p>
     </ListItemWrapper>
@@ -12,9 +12,9 @@ const SongListItem = props => {
 };
 
 const LyricListItem = props => {
-  const { text } = props;
+  const { text, active, onClick } = props;
   return (
-    <ListItemWrapper>
+    <ListItemWrapper active={active} onClick={onClick}>
       {text.split("\n").map(line => (
         <p>{line}</p>
       ))}
@@ -37,13 +37,17 @@ const List = props => {
 };
 
 const SongList = props => {
-  const { list } = props;
+  const { list, active, onClick } = props;
 
   return (
     <ListContainer>
       <ListWrapper>
-        {list.map(item => (
-          <SongListItem {...item} />
+        {list.map((item, index) => (
+          <SongListItem
+            {...item}
+            onClick={() => onClick(index)}
+            active={index === active}
+          />
         ))}
       </ListWrapper>
     </ListContainer>
@@ -51,13 +55,17 @@ const SongList = props => {
 };
 
 const LyricList = props => {
-  const { list } = props;
+  const { list, active, onClick } = props;
 
   return (
     <ListContainer>
       <ListWrapper>
-        {list.map(item => (
-          <LyricListItem {...item} />
+        {list.map((item, index) => (
+          <LyricListItem
+            {...item}
+            onClick={() => onClick(index)}
+            active={index === active}
+          />
         ))}
       </ListWrapper>
     </ListContainer>

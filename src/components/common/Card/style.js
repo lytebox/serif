@@ -16,6 +16,18 @@ const CardWrapper = styled.div`
 const CardHeading = styled.h1`
   margin: 0;
   padding: 0.6em 1em;
+
+  ${props =>
+    props.onClick &&
+    css`
+      cursor: pointer;
+    `}
+
+  ${props =>
+    props.grey &&
+    css`
+      color: ${theme.greyDark};
+    `}
 `;
 
 export { CardWrapper, CardHeading };

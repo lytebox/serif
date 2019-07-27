@@ -23,7 +23,9 @@ class ControllerPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      songsList: {},
+      showSchedule: false,
+      songsList: [],
+      scheduledSongs: [],
       selectedSong: {},
       selectedSongTitle: "",
       showing: "",
@@ -31,13 +33,10 @@ class ControllerPage extends React.Component {
     };
   }
   componentDidMount() {
-    let test = JSON.parse(localStorage.getItem("state"));
-    let songItems = test.lyric.songList;
+    const savedState = JSON.parse(localStorage.getItem("state"));
     this.setState({
-      songsList: songItems
+      songsList: savedState.lyric.songList
     });
-    this.selectSong = this.selectSong.bind(this);
-    this.renderLyric = this.renderLyric.bind(this);
 
     document.addEventListener("keydown", e => {
       console.log(e);
@@ -59,15 +58,31 @@ class ControllerPage extends React.Component {
     });
   }
 
-  selectSong(song) {
+  scheduleSong = index => {
+    console.log("Scheduling songg", index);
+    console.log(this.state.songsList[index]);
+    this.setState(prevState => ({
+      scheduledSongs:
+        prevState.scheduledSongs.push(index) && prevState.scheduledSongs
+    }));
+  };
+
+  unscheduleSong = index => {
+    this.setState(prevState => ({
+      scheduledSongs:
+        prevState.scheduledSongs.splice(index, 1) && prevState.scheduledSongs
+    }));
+  };
+
+  selectSong = song => {
     let selectedSong = this.state.songsList[song];
     this.setState({
       selectedSong: selectedSong,
       selectedSongTitle: song
     });
-  }
+  };
 
-  renderLyric(index) {
+  renderLyric = index => {
     if (index < 0 || index > this.state.selectedSong.lyric.length - 1)
       return false;
 
@@ -77,38 +92,37 @@ class ControllerPage extends React.Component {
       lyricIndex: index
     });
     this.props.showLyric(currentLyric);
-  }
+  };
 
   render() {
+    const { songsList, scheduledSongs, showSchedule } = this.state;
     return (
       <ControllerPageContainer>
         <Grid>
           <Col lg={4} md={4} sm={12}>
             <Card>
               <Row>
-                <CardHeading>Song List</CardHeading>
-                <CardHeading>Schedule</CardHeading>
+                <CardHeading
+                  grey={showSchedule}
+                  onClick={() => this.setState({ showSchedule: false })}
+                >
+                  Song List
+                </CardHeading>
+                <CardHeading
+                  grey={!showSchedule}
+                  onClick={() => this.setState({ showSchedule: true })}
+                >
+                  Schedule
+                </CardHeading>
               </Row>
-              <SongList
-                list={[
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" },
-                  { title: "Song title", author: "Author here" }
-                ]}
-              />
+
+              {this.state.showSchedule ? (
+                <SongList
+                  list={scheduledSongs.map(index => songsList[index])}
+                />
+              ) : (
+                <SongList list={songsList} onClick={this.scheduleSong} />
+              )}
             </Card>
           </Col>
           <Col lg={4} md={4} sm={12}>

@@ -9,11 +9,7 @@ const lyricReducer = (state = initialState, action) => {
   switch (action.type) {
     case "INPUT_SONG":
       let newState = { ...state };
-      let newsong = {
-        title: action.payload.songTitle,
-        lyric: action.payload.songLyric
-      };
-      newState.songList[action.payload.songTitle] = newsong;
+      newState.songList.push(action.payload);
       return newState;
     case "SHOW_LYRIC":
       return {

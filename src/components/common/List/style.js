@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import theme from "../../../theme";
 
 const ListContainer = styled.div`
   display: flex;
@@ -22,6 +23,24 @@ const ListItemWrapper = styled.div`
   flex-grow: 0;
   flex-shrink: 0;
   padding: 0.5em 1em;
+  transition: all 0.1s;
+
+  &:nth-child(even) {
+    background-color: ${theme.grey};
+  }
+
+  &:hover {
+    background-color: ${theme.blue};
+    color: ${theme.white};
+    cursor: pointer;
+  }
+
+  ${prop =>
+    prop.active &&
+    css`
+      background-color: ${theme.blue};
+      color: ${theme.white};
+    `}
 
   h3 {
     margin: 0;
