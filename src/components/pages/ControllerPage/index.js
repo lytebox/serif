@@ -26,8 +26,7 @@ class ControllerPage extends React.Component {
       showSchedule: false,
       songsList: [],
       scheduledSongs: [],
-      selectedSong: {},
-      selectedSongTitle: "",
+      activeSongIndex: -1,
       showing: "",
       lyricIndex: 0
     };
@@ -59,7 +58,7 @@ class ControllerPage extends React.Component {
   }
 
   scheduleSong = index => {
-    console.log("Scheduling songg", index);
+    console.log("Scheduling song", index);
     console.log(this.state.songsList[index]);
     this.setState(prevState => ({
       scheduledSongs:
@@ -74,19 +73,19 @@ class ControllerPage extends React.Component {
     }));
   };
 
-  selectSong = song => {
-    let selectedSong = this.state.songsList[song];
+  selectSong = index => {
+    console.log(this.state.songsList[index]);
     this.setState({
-      selectedSong: selectedSong,
-      selectedSongTitle: song
+      activeSongIndex: index
     });
   };
 
   renderLyric = index => {
-    if (index < 0 || index > this.state.selectedSong.lyric.length - 1)
-      return false;
+    const { songsList, activeSongIndex } = this.state;
+    const activeSong = songsList[activeSongIndex];
+    if (index < 0 || index > activeSong.lyrics.length - 1) return false;
 
-    const currentLyric = this.state.selectedSong.lyric[index];
+    const currentLyric = activeSong.lyrics[index];
     this.setState({
       showing: currentLyric,
       lyricIndex: index
@@ -95,7 +94,13 @@ class ControllerPage extends React.Component {
   };
 
   render() {
-    const { songsList, scheduledSongs, showSchedule } = this.state;
+    const {
+      songsList,
+      scheduledSongs,
+      showSchedule,
+      activeSongIndex,
+      showing
+    } = this.state;
     return (
       <ControllerPageContainer>
         <Grid>
@@ -119,6 +124,7 @@ class ControllerPage extends React.Component {
               {this.state.showSchedule ? (
                 <SongList
                   list={scheduledSongs.map(index => songsList[index])}
+                  onClick={idx => this.selectSong(scheduledSongs[idx])}
                 />
               ) : (
                 <SongList list={songsList} onClick={this.scheduleSong} />
@@ -127,12 +133,23 @@ class ControllerPage extends React.Component {
           </Col>
           <Col lg={4} md={4} sm={12}>
             <Card>
-              <CardHeading>Song Title</CardHeading>
+              <CardHeading>
+                {activeSongIndex > -1
+                  ? songsList[activeSongIndex].title
+                  : "No songs selected"}
+              </CardHeading>
+              <LyricList
+                list={
+                  activeSongIndex > -1 ? songsList[activeSongIndex].lyrics : []
+                }
+                onClick={this.renderLyric}
+              />
             </Card>
           </Col>
           <Col lg={4} md={4} sm={12}>
             <Card>
               <CardHeading>Now Showing</CardHeading>
+              <CardHeading>{showing}</CardHeading>
             </Card>
             <Card>
               <CardHeading>Properties</CardHeading>

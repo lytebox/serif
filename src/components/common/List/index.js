@@ -62,7 +62,7 @@ const LyricList = props => {
       <ListWrapper>
         {list.map((item, index) => (
           <LyricListItem
-            {...item}
+            text={item}
             onClick={() => onClick(index)}
             active={index === active}
           />
