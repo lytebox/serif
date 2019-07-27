@@ -25,3 +25,10 @@ export function showLyric(lyric) {
     payload: lyric
   };
 }
+
+export function toggleWatermark(watermark) {
+  return {
+    type: "TOGGLE_WATERMARK",
+    payload: watermark
+  };
+}

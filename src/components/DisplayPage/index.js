@@ -10,15 +10,18 @@ class DisplayPage extends React.Component {
     super(props);
     let initialState = JSON.parse(localStorage.getItem("state"));
     this.state = {
-      currentLyric: initialState.lyric.lyricShowing
+      currentLyric: initialState.lyric.lyricShowing,
+      isWatermarkShown: initialState.lyric.isWatermarkShown
     };
   }
 
   handleChange(event) {
     let newState = JSON.parse(event.newValue);
+    console.log(newState);
     this.setState({
       ...this.state,
-      currentLyric: newState.lyric.lyricShowing
+      currentLyric: newState.lyric.lyricShowing,
+      isWatermarkShown: newState.lyric.isWatermarkShown
     });
   }
 
@@ -39,7 +42,7 @@ class DisplayPage extends React.Component {
         <div className="container">
           <div className="watermarkContainer">
             <div className="divider" />
-            <Watermark />
+            {this.state.isWatermarkShown ? <Watermark /> : ""}
           </div>
           <div className="lyricContainer">
             <div style={{ whiteSpace: "pre-wrap", textAlign: "center" }}>
@@ -56,7 +59,8 @@ function mapStateToProps(state) {
   return {
     songs: state.lyric.songList.length,
     index: state.lyric.currentIndex,
-    show: state.lyric.lyricShowing
+    show: state.lyric.lyricShowing,
+    isWatermarkShown: state.lyric.isWatermarkShown
   };
 }
 

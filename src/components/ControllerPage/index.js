@@ -9,19 +9,23 @@ import {
   ListContainer
 } from "./style";
 import LyricCard from "../../components/LyricCard";
-import { showLyric } from "../../actions/lyricAction";
+import { showLyric, toggleWatermark } from "../../actions/lyricAction";
 import shortid from "shortid";
 
 class ControllerPage extends React.Component {
   constructor(props) {
     super(props);
+    let watermarkStatus = JSON.parse(localStorage.getItem("state")).lyric
+      .isWatermarkShown;
     this.state = {
       songsList: {},
       selectedSong: {},
       selectedSongTitle: "",
       showing: "",
-      lyricIndex: 0
+      lyricIndex: 0,
+      isWatermarkShown: watermarkStatus
     };
+    this.handleWatermarkChange = this.handleWatermarkChange.bind(this);
   }
   componentDidMount() {
     let test = JSON.parse(localStorage.getItem("state"));
@@ -72,6 +76,14 @@ class ControllerPage extends React.Component {
     this.props.showLyric(currentLyric);
   }
 
+  handleWatermarkChange() {
+    console.log("masukk");
+    this.setState({
+      isWatermarkShown: !this.state.isWatermarkShown
+    });
+    this.props.toggleWatermark(this.props.isWatermarkShown);
+  }
+
   render() {
     return (
       <ControllerPageContainer>
@@ -113,6 +125,23 @@ class ControllerPage extends React.Component {
           <div style={{ whiteSpace: "pre-wrap" }}>
             {this.state.showing.toUpperCase()}
           </div>
+          <div style={{ paddingTop: "20em" }}>
+            Show watermark?
+            <br />
+            <input
+              type="checkbox"
+              onChange={() => {
+                this.handleWatermarkChange();
+              }}
+            />
+            <br />
+            <div>
+              <b>
+                Watermark is{" "}
+                {`${this.state.isWatermarkShown ? "" : "not"} shown`}
+              </b>
+            </div>
+          </div>
         </SectionContainer>
       </ControllerPageContainer>
     );
@@ -122,13 +151,15 @@ class ControllerPage extends React.Component {
 function mapStateToProps(state) {
   return {
     songs: state.lyric.songList,
-    index: state.lyric.currentLyricIndex
+    index: state.lyric.currentLyricIndex,
+    isWatermarkShown: state.lyric.isWatermarkShown
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    showLyric: lyric => dispatch(showLyric(lyric))
+    showLyric: lyric => dispatch(showLyric(lyric)),
+    toggleWatermark: watermarkState => dispatch(toggleWatermark(watermarkState))
   };
 }
 

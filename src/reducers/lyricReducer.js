@@ -2,7 +2,8 @@ const initialState = {
   songList: {},
   currentSong: {},
   currentLyricIndex: 0,
-  lyricShowing: ""
+  lyricShowing: "",
+  isWatermarkShown: true
 };
 
 const lyricReducer = (state = initialState, action) => {
@@ -19,6 +20,11 @@ const lyricReducer = (state = initialState, action) => {
       return {
         ...state,
         lyricShowing: action.payload
+      };
+    case "TOGGLE_WATERMARK":
+      return {
+        ...state,
+        isWatermarkShown: !action.payload
       };
     default:
       return state;
