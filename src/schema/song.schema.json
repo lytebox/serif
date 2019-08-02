@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "Song",
+  "title": "Song",
+  "description": "A song entry",
+  "type": "object",
+  "properties": {
+    "title": {
+      "description": "The title of the song",
+      "type": "string"
+    },
+    "author": {
+      "description": "Name of the author of the song",
+      "type": "string"
+    },
+    "copyright": {
+      "description": "Copyright notice",
+      "type": "string"
+    },
+    "lyrics": {
+      "description": "An array of the song lyrics",
+      "type": "array",
+      "items": {
+        "description": "A lyric entry",
+        "type": "object",
+        "properties": {
+          "marker": {
+            "description": "Optional marker to label verse, chorus, etc.",
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      }
+    }
+  },
+  "required": [
+    "title",
+    "author",
+    "copyright",
+    "lyrics"
+  ]
+}
+

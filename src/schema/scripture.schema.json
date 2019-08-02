@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "Scripture",
+  "title": "Scripture",
+  "description": "An object representing one scripture version",
+  "type": "object",
+  "properties": {
+    "language": {
+      "description": "The language this scripture is written in",
+      "type": "string"
+    },
+    "version": {
+      "description": "The name of the transation",
+      "type": "string"
+    },
+    "copyright": {
+      "description": "Copyright notice",
+      "type": "string"
+    },
+    "chapters": {
+      "type": "array",
+      "items": {
+        "description": "A chapter in the scripture",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Human-readable name of the chapter",
+            "type": "string"
+          },
+          "verses": {
+            "description": "The verses in the chapter",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "verses"
+        ]
+      }
+    }
+  },
+  "required": [
+    "language",
+    "version",
+    "copyright",
+    "chapters"
+  ]
+}
