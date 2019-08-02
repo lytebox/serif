@@ -38,6 +38,9 @@ const ListItemWrapper = styled.div`
   ${prop =>
     prop.active &&
     css`
+      &:nth-child(even) {
+        background-color: ${theme.blue};
+      }
       background-color: ${theme.blue};
       color: ${theme.white};
     `}

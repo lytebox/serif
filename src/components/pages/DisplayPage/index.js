@@ -37,10 +37,6 @@ class DisplayPage extends React.Component {
     return (
       <DisplayPageContainer>
         <div className="container">
-          <div className="watermarkContainer">
-            <div className="divider" />
-            <Watermark />
-          </div>
           <div className="lyricContainer">
             <div style={{ whiteSpace: "pre-wrap", textAlign: "center" }}>
               {lyric.toUpperCase()}

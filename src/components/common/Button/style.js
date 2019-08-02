@@ -45,4 +45,14 @@ const ButtonWrapper = styled.button`
     `}
 `;
 
-export { ButtonWrapper };
+const FullWidthButtonWrapper = styled.button`
+  color: ${theme.greyDark};
+  background: ${theme.grey};
+  width: 100%;
+  padding: 0.5em 1em;
+  text-align: center;
+  font-size: 1.2em;
+  border: 0;
+`;
+
+export { ButtonWrapper, FullWidthButtonWrapper };

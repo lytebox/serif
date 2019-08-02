@@ -10,6 +10,8 @@ import {
 } from "./style";
 import { Grid, Col, Row } from "../../layout";
 import {
+  Button,
+  FullWidthButton,
   Card,
   CardHeading,
   SongList,
@@ -27,6 +29,7 @@ class ControllerPage extends React.Component {
       songsList: [],
       scheduledSongs: [],
       activeSongIndex: -1,
+      activeScheduleIndex: -1,
       showing: "",
       lyricIndex: 0
     };
@@ -73,10 +76,14 @@ class ControllerPage extends React.Component {
     }));
   };
 
-  selectSong = index => {
-    console.log(this.state.songsList[index]);
+  selectScheduledSong = index => {
+    const { scheduledSongs } = this.state;
+    const songIndex = scheduledSongs[index];
+
+    console.log(this.state.songsList[songIndex]);
     this.setState({
-      activeSongIndex: index
+      activeSongIndex: songIndex,
+      activeScheduleIndex: index
     });
   };
 
@@ -99,6 +106,8 @@ class ControllerPage extends React.Component {
       scheduledSongs,
       showSchedule,
       activeSongIndex,
+      activeScheduleIndex,
+      lyricIndex,
       showing
     } = this.state;
     return (
@@ -124,11 +133,14 @@ class ControllerPage extends React.Component {
               {this.state.showSchedule ? (
                 <SongList
                   list={scheduledSongs.map(index => songsList[index])}
-                  onClick={idx => this.selectSong(scheduledSongs[idx])}
+                  onClick={idx => this.selectScheduledSong(idx)}
+                  active={activeScheduleIndex}
                 />
               ) : (
                 <SongList list={songsList} onClick={this.scheduleSong} />
               )}
+
+              <FullWidthButton>+ New Song</FullWidthButton>
             </Card>
           </Col>
           <Col lg={4} md={4} sm={12}>
@@ -142,6 +154,7 @@ class ControllerPage extends React.Component {
                 list={
                   activeSongIndex > -1 ? songsList[activeSongIndex].lyrics : []
                 }
+                active={lyricIndex}
                 onClick={this.renderLyric}
               />
             </Card>
@@ -156,49 +169,6 @@ class ControllerPage extends React.Component {
             </Card>
           </Col>
         </Grid>
-      </ControllerPageContainer>
-    );
-    const x = (
-      <ControllerPageContainer>
-        <SectionContainer>
-          <SectionTitle>Song List</SectionTitle>
-          <ListContainer>
-            {Object.keys(this.state.songsList).map(songTitle => (
-              <LyricCard
-                text={songTitle}
-                key={shortid.generate()}
-                onClick={() => this.selectSong(songTitle)}
-                active={this.state.selectedSongTitle === songTitle}
-              />
-            ))}
-          </ListContainer>
-        </SectionContainer>
-        <SectionContainer>
-          <SectionTitle>
-            {this.state.selectedSong.title === undefined
-              ? "Song Title"
-              : this.state.selectedSong.title}
-          </SectionTitle>
-          <ListContainer>
-            {this.state.selectedSong.lyric === undefined
-              ? "Please select song"
-              : this.state.selectedSong.lyric.map((lyric, index) => (
-                  <LyricCard
-                    key={shortid.generate()}
-                    onClick={() => this.renderLyric(index)}
-                    text={lyric}
-                    highlight={lyric.startsWith("[")}
-                    active={this.state.lyricIndex === index}
-                  />
-                ))}
-          </ListContainer>
-        </SectionContainer>
-        <SectionContainer>
-          <SectionTitle>Active Lyrics</SectionTitle>
-          <div style={{ whiteSpace: "pre-wrap" }}>
-            {this.state.showing.toUpperCase()}
-          </div>
-        </SectionContainer>
       </ControllerPageContainer>
     );
   }

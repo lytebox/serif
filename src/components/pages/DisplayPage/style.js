@@ -25,7 +25,7 @@ export const DisplayPageContainer = styled.div`
   }
   .lyricContainer {
     align-self: center;
-    font-family: "Playfair Display", serif;
+    font-family: "Oxygen Sans", Roboto, sans-serif;
     font-weight: bold;
     font-size: 3em;
     color: white;
