@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "id": "UserData",
+  "title": "User Data",
+  "description": "A user's personal data, including their list of songs and scripture",
+  "type": "object",
+  "properties": {
+    "profile": {
+      "description": "Personal user data",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "description": "Firebase User ID",
+          "type": "string"
+        },
+        "email": {
+          "description": "User's email address",
+          "type": "string"
+        }
+      },
+      "required": [
+        "uid",
+        "email"
+      ]
+    },
+    "data": {
+      "description": "Persistent user-generated data, such as songs, scripture, etc.",
+      "type": "object",
+      "properties": {
+        "songs": {
+          "description": "List of songs",
+          "type": "array",
+          "items": {
+            "$ref": "song.schema.json"
+          }
+        },
+        "scripture": {
+          "description": "List of scripture",
+          "type": "array",
+          "items": {
+            "$ref": "scripture.schema.json"
+          }
+        }
+      },
+      "required": [
+        "songs",
+        "scripture"
+      ]
+    }
+  },
+  "required": [
+    "profile",
+    "data"
+  ]
+}
