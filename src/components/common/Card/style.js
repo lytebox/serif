@@ -4,8 +4,10 @@ import theme from "../../../theme";
 const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  flex-shrink: 1;
+  ${props => css`
+    flex-grow: ${props.flexGrow || 1};
+    flex-shrink: ${props.flexShrink || 1};
+  `}
   margin: 1em 2em;
   background: ${theme.white};
   border-radius: 8px;
@@ -30,4 +32,8 @@ const CardHeading = styled.h1`
     `}
 `;
 
-export { CardWrapper, CardHeading };
+const CardBody = styled.div`
+  padding: 1em;
+`;
+
+export { CardWrapper, CardHeading, CardBody };

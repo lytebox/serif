@@ -12,12 +12,20 @@ const SongListItem = props => {
 };
 
 const LyricListItem = props => {
-  const { text, active, onClick } = props;
+  const { text, active, onClick, addMargin } = props;
   return (
-    <ListItemWrapper active={active} onClick={onClick}>
-      {text.split("\n").map(line => (
-        <p>{line}</p>
-      ))}
+    <ListItemWrapper active={active} onClick={onClick} addMargin={addMargin}>
+      {text.split("\n").map(line =>
+        line.indexOf("[") === 0 ? (
+          <p>
+            <b>
+              <u>{line}</u>
+            </b>
+          </p>
+        ) : (
+          <p>{line}</p>
+        )
+      )}
     </ListItemWrapper>
   );
 };
@@ -42,13 +50,14 @@ const SongList = props => {
   return (
     <ListContainer>
       <ListWrapper>
-        {list.map((item, index) => (
-          <SongListItem
-            {...item}
-            onClick={() => onClick(index)}
-            active={index === active}
-          />
-        ))}
+        {list &&
+          list.map((item, index) => (
+            <SongListItem
+              {...item}
+              onClick={() => onClick(index)}
+              active={index === active}
+            />
+          ))}
       </ListWrapper>
     </ListContainer>
   );
@@ -60,13 +69,17 @@ const LyricList = props => {
   return (
     <ListContainer>
       <ListWrapper>
-        {list.map((item, index) => (
-          <LyricListItem
-            text={item}
-            onClick={() => onClick(index)}
-            active={index === active}
-          />
-        ))}
+        {list.map(
+          (item, index) =>
+            item.trim().length > 0 && (
+              <LyricListItem
+                text={item.trim()}
+                onClick={() => onClick(index)}
+                active={index === active}
+                addMargin={index > 0 && list[index - 1].trim().length < 1}
+              />
+            )
+        )}
       </ListWrapper>
     </ListContainer>
   );

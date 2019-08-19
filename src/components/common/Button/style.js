@@ -49,10 +49,17 @@ const FullWidthButtonWrapper = styled.button`
   color: ${theme.greyDark};
   background: ${theme.grey};
   width: 100%;
-  padding: 0.5em 1em;
+  padding: 1em;
   text-align: center;
   font-size: 1.2em;
   border: 0;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    color: ${theme.white};
+    background: ${theme.blue};
+  }
 `;
 
 export { ButtonWrapper, FullWidthButtonWrapper };

@@ -35,6 +35,16 @@ const ListItemWrapper = styled.div`
     cursor: pointer;
   }
 
+  &:active {
+    transform: translateY(3px);
+  }
+
+  ${prop =>
+    prop.addMargin &&
+    css`
+      margin-top: 2em;
+    `}
+
   ${prop =>
     prop.active &&
     css`

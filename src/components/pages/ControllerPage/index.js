@@ -14,6 +14,7 @@ import {
   FullWidthButton,
   Card,
   CardHeading,
+  CardBody,
   SongList,
   LyricList,
   LyricCard
@@ -35,7 +36,13 @@ class ControllerPage extends React.Component {
     };
   }
   componentDidMount() {
-    const savedState = JSON.parse(localStorage.getItem("state"));
+    const blankState = {
+      lyric: [],
+      currentSong: {},
+      currentLyricIndex: 0,
+      lyricShowing: ""
+    };
+    const savedState = JSON.parse(localStorage.getItem("state")) || blankState;
     this.setState({
       songsList: savedState.lyric.songList
     });
@@ -85,6 +92,13 @@ class ControllerPage extends React.Component {
       activeSongIndex: songIndex,
       activeScheduleIndex: index
     });
+  };
+
+  hideLyric = () => {
+    this.setState({
+      showing: ""
+    });
+    this.props.showLyric("");
   };
 
   renderLyric = index => {
@@ -162,7 +176,14 @@ class ControllerPage extends React.Component {
           <Col lg={4} md={4} sm={12}>
             <Card>
               <CardHeading>Now Showing</CardHeading>
-              <CardHeading>{showing}</CardHeading>
+              <CardHeading style={{ display: "flex", flex: "1" }}>
+                {showing}
+              </CardHeading>
+              <CardBody>
+                <Button outline invert onClick={this.hideLyric}>
+                  Clear
+                </Button>
+              </CardBody>
             </Card>
             <Card>
               <CardHeading>Properties</CardHeading>
