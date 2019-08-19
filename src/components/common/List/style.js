@@ -17,22 +17,31 @@ const ListWrapper = styled.div`
   bottom: 0;
 `;
 
-const ListItemWrapper = styled.div`
+const ListBackgroundColorWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  flex-grow: 0;
-  flex-shrink: 0;
-  padding: 0.5em 1em;
-  transition: all 0.1s;
-
+  flex-direction: row;
+  background-color: ${theme.white};
   &:nth-child(even) {
     background-color: ${theme.grey};
   }
+`;
+
+const ListItemWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  padding: 0.5em 1em;
+  transition: all 0.1s;
 
   &:hover {
     background-color: ${theme.blue};
     color: ${theme.white};
     cursor: pointer;
+  }
+
+  &:hover div:after {
+    color: ${theme.white};
   }
 
   &:active {
@@ -48,9 +57,6 @@ const ListItemWrapper = styled.div`
   ${prop =>
     prop.active &&
     css`
-      &:nth-child(even) {
-        background-color: ${theme.blue};
-      }
       background-color: ${theme.blue};
       color: ${theme.white};
     `}
@@ -65,4 +71,29 @@ const ListItemWrapper = styled.div`
   }
 `;
 
-export { ListContainer, ListWrapper, ListItemWrapper };
+const ListItemButtonPlus = styled.div`
+  &:after {
+    content: "+";
+    cursor: pointer;
+    padding: 5px 25px;
+    font-size: 3.5em;
+    color: ${theme.greyDark};
+    transition: all 0.1s;
+    overflow: hidden;
+  }
+  &:hover:after {
+    color: ${theme.white};
+    background-color: ${theme.blue};
+  }
+  &:active {
+    transform: translateY(3px);
+  }
+`;
+
+export {
+  ListContainer,
+  ListWrapper,
+  ListBackgroundColorWrapper,
+  ListItemWrapper,
+  ListItemButtonPlus
+};

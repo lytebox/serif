@@ -148,6 +148,7 @@ class ControllerPage extends React.Component {
                 <SongList
                   list={scheduledSongs.map(index => songsList[index])}
                   onClick={idx => this.selectScheduledSong(idx)}
+                  onButtonClick={idx => console.log("Button click", idx)}
                   active={activeScheduleIndex}
                 />
               ) : (
