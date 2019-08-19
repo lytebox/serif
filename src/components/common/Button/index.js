@@ -1,7 +1,7 @@
 import React from "react";
-import { ButtonWrapper } from "./style";
+import { ButtonWrapper, FullWidthButtonWrapper } from "./style";
 
 const Button = props => <ButtonWrapper {...props} />;
-const FullWidthButton = props => <FullWidthButton {...props} />;
+const FullWidthButton = props => <FullWidthButtonWrapper {...props} />;
 
 export { Button, FullWidthButton };
