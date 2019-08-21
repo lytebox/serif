@@ -1,38 +1,39 @@
-# Worshipweb (name pending)
+# Serif
 
 Web-based lyrics display software.
-
-Live deploy available on [Netlify](https://worshipweb.netlify.com/)
 
 ### Background
 
 This project is maintained by **Hizkia Felix** and **Jonathan Filbert**. Originally we started this project as we have been searching for an alternative and more flexible lyric displaying software to be used in our local church.
 
-We have tried some free and open source _church softwares_, but some are just too fragile and/or too bloated by unnecessary features.<br/>
+We have tried some free and open source _church software_, but they are just either too fragile, bloated, or did not fit our needs.
+
 We 👏 Just 👏 Want 👏 To 👏 Display 👏 Lyrics.
 
-We then decided that softwares are not really our target product here, since there are a lot of people that have done so, So we picked an alternative approach in which we developed a **Web-app**, not just an ordinary web app, a **blazing-fast web-app** that's sole job is to display lyrics in a single browser page with a black background (_As the approach in our church is to layer this lyric afterwards to our Resolume visual layer_).
+And so we decided that desktop software is not really our target product here, since there are a lot of people that have done so. So we picked an alternative approach, which is to developed a **web app** instead. Not just an ordinary web app, but a **blazing-fast web app** whose sole job is to display lyrics in a single browser page with a black background (_As the approach in our church is to layer this lyric afterwards to our Resolume visual layer_).
 
-### Stacks
+### Stack
 
-React ⚛️ <br/>
-Redux ♻️ <br/>
-Styled Components 💅🏻 <br/>
-Cross tab functionalities using _Localstorage_ 🌍 <br/>
+- React ⚛️
+- Redux ♻️
+- Styled Components 💅🏻
+- Cross tab functionalities using _Local Storage_ 🌍
 
-### What's Included?
+### What's included?
 
-`/` **Homepage**
-_You can add your songs here_<br/>
-`/controller` **Control Page**
-_You can control which song and which lyric should be displayed by the display page_<br/>
-`/display` **Display Page**
-\*You can see the displayed lyric here. **It is recommended to run this tab on a seperate window as this will be the page that is displayed on your projector / displaying devices.\***<br/>
+- `/` **Homepage**
+- `/controller` **Control Page**
+    - _You can control which songs and which lyrics should be displayed by the display page_
+    - _You can also add new songs in this page_
+- `/display` **Display Page**
+    - _You can see the displayed lyric here_
+    - _It is recommended to run this tab on a seperate window as this will be the page that is displayed on your projector / external display device._
 
 ### How to run this?
 
-`git clone`<br/>
-`npm install`<br/>
-`npm start`<br/>
-Type `http://localhost:3000` in your browser <br/>
-Profit :moneybag:
+- `git clone`
+- `npm install`
+- `npm start`
+- Go to `http://localhost:3000` in your browser
+- ???
+- Profit! :moneybag:
