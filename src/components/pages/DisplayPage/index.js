@@ -8,7 +8,13 @@ import Watermark from "../../common/Watermark";
 class DisplayPage extends React.Component {
   constructor(props) {
     super(props);
-    let initialState = JSON.parse(localStorage.getItem("state"));
+    const blankState = {
+      lyric: [],
+      currentSong: {},
+      currentLyricIndex: 0,
+      lyricShowing: ""
+    };
+    let initialState = JSON.parse(localStorage.getItem("state")) || blankState;
     this.state = {
       currentLyric: initialState.lyric.lyricShowing
     };
@@ -28,18 +34,19 @@ class DisplayPage extends React.Component {
 
   render() {
     const { currentLyric } = this.state;
-    const lyric = currentLyric.startsWith("[")
-      ? currentLyric
-          .split("\n")
-          .slice(1)
-          .join("\n")
-      : currentLyric;
+    const lyric =
+      currentLyric && currentLyric.startsWith("[")
+        ? currentLyric
+            .split("\n")
+            .slice(1)
+            .join("\n")
+        : currentLyric;
     return (
       <DisplayPageContainer>
         <div className="container">
           <div className="lyricContainer">
             <div style={{ whiteSpace: "pre-wrap", textAlign: "center" }}>
-              {lyric.toUpperCase()}
+              {lyric && lyric.toUpperCase()}
             </div>
           </div>
         </div>
