@@ -19,14 +19,15 @@ import {
   LyricList,
   LyricCard
 } from "../../common";
-import { showLyric } from "../../../actions/lyricAction";
+import { inputLyric, showLyric } from "../../../actions/lyricAction";
+import NewSongView from "../../views/NewSongView";
 import shortid from "shortid";
 
 class ControllerPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showSchedule: false,
+      leftPanelDisplay: "list",
       songsList: [],
       scheduledSongs: [],
       activeSongIndex: -1,
@@ -66,6 +67,16 @@ class ControllerPage extends React.Component {
       }
     });
   }
+
+  handleNewSong = songData => {
+    console.log("handleNewSong");
+    console.log(songData);
+    this.props.inputLyric(songData);
+    this.setState(state => ({
+      songsList: [...state.songsList, songData],
+      leftPanelDisplay: "list"
+    }));
+  };
 
   scheduleSong = index => {
     console.log("Scheduling song", index);
@@ -118,7 +129,7 @@ class ControllerPage extends React.Component {
     const {
       songsList,
       scheduledSongs,
-      showSchedule,
+      leftPanelDisplay,
       activeSongIndex,
       activeScheduleIndex,
       lyricIndex,
@@ -131,31 +142,41 @@ class ControllerPage extends React.Component {
             <Card>
               <Row>
                 <CardHeading
-                  grey={showSchedule}
-                  onClick={() => this.setState({ showSchedule: false })}
+                  grey={leftPanelDisplay !== "list"}
+                  onClick={() => this.setState({ leftPanelDisplay: "list" })}
                 >
                   Song List
                 </CardHeading>
                 <CardHeading
-                  grey={!showSchedule}
-                  onClick={() => this.setState({ showSchedule: true })}
+                  grey={leftPanelDisplay !== "schedule"}
+                  onClick={() =>
+                    this.setState({ leftPanelDisplay: "schedule" })
+                  }
                 >
                   Schedule
                 </CardHeading>
               </Row>
 
-              {this.state.showSchedule ? (
+              {leftPanelDisplay === "schedule" ? (
                 <SongList
                   list={scheduledSongs.map(index => songsList[index])}
                   onClick={idx => this.selectScheduledSong(idx)}
                   onButtonClick={idx => console.log("Button click", idx)}
                   active={activeScheduleIndex}
                 />
-              ) : (
+              ) : leftPanelDisplay === "list" ? (
                 <SongList list={songsList} onClick={this.scheduleSong} />
+              ) : (
+                <NewSongView onNewSong={this.handleNewSong} />
               )}
 
-              <FullWidthButton>+ New Song</FullWidthButton>
+              {leftPanelDisplay !== "new" && (
+                <FullWidthButton
+                  onClick={() => this.setState({ leftPanelDisplay: "new" })}
+                >
+                  + New Song
+                </FullWidthButton>
+              )}
             </Card>
           </Col>
           <Col lg={4} md={4} sm={12}>
@@ -205,7 +226,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    showLyric: lyric => dispatch(showLyric(lyric))
+    showLyric: lyric => dispatch(showLyric(lyric)),
+    inputLyric: data => dispatch(inputLyric(data))
   };
 }
 

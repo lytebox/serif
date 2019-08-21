@@ -72,6 +72,7 @@ const ListItemWrapper = styled.div`
 `;
 
 const ListItemButtonPlus = styled.div`
+  overflow: hidden;
   &:after {
     content: "+";
     cursor: pointer;

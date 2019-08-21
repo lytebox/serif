@@ -53,12 +53,16 @@ const FullWidthButtonWrapper = styled.button`
   text-align: center;
   font-size: 1.2em;
   border: 0;
-  transition: all 0.2s;
+  transition: all 0.2s, transform 0.1s;
   cursor: pointer;
 
   &:hover {
     color: ${theme.white};
     background: ${theme.blue};
+  }
+
+  &:active {
+    transform: translateY(2px);
   }
 `;
 

@@ -1,5 +1,5 @@
 const initialState = {
-  songList: {},
+  songList: [],
   currentSong: {},
   currentLyricIndex: 0,
   lyricShowing: ""
