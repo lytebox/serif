@@ -73,7 +73,10 @@ class ControllerPage extends React.Component {
     console.log(songData);
     this.props.inputLyric(songData);
     this.setState(state => ({
-      songsList: [...state.songsList, songData],
+      songsList:
+        state.songsList && state.songsList.length > 0
+          ? [...state.songsList, songData]
+          : [songData],
       leftPanelDisplay: "list"
     }));
   };
