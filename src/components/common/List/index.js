@@ -4,19 +4,21 @@ import {
   ListWrapper,
   ListBackgroundColorWrapper,
   ListItemWrapper,
-  ListItemButtonPlus
+  ListItemButton
 } from "./style";
 import { Row } from "../../layout";
 
 const SongListItem = props => {
-  const { title, author, active, onClick, onButtonClick } = props;
+  const { title, author, active, onClick, buttonLabel, buttonOnClick } = props;
   return (
     <ListBackgroundColorWrapper>
       <ListItemWrapper active={active} onClick={onClick}>
         <h3>{title}</h3>
         <p>{author}</p>
       </ListItemWrapper>
-      <ListItemButtonPlus onClick={onButtonClick} />
+      {buttonLabel && buttonLabel.length > 0 && (
+        <ListItemButton onClick={buttonOnClick} label={buttonLabel} />
+      )}
     </ListBackgroundColorWrapper>
   );
 };
@@ -57,7 +59,7 @@ const List = props => {
 };
 
 const SongList = props => {
-  const { list, active, onClick } = props;
+  const { list, active, onClick, buttonLabel, buttonOnClick } = props;
 
   return (
     <ListContainer>
@@ -69,6 +71,8 @@ const SongList = props => {
               key={`sli${index}`}
               onClick={() => onClick(index)}
               active={index === active}
+              buttonLabel={buttonLabel}
+              buttonOnClick={() => buttonOnClick(index)}
             />
           ))}
       </ListWrapper>
@@ -77,7 +81,7 @@ const SongList = props => {
 };
 
 const LyricList = props => {
-  const { list, active, onClick, onButtonClick } = props;
+  const { list, active, onClick, buttonOnClick } = props;
 
   return (
     <ListContainer>
@@ -89,7 +93,6 @@ const LyricList = props => {
                 key={`lli${index}`}
                 text={item.trim()}
                 onClick={() => onClick(index)}
-                onButtonClick={() => onButtonClick(index)}
                 active={index === active}
                 addMargin={index > 0 && list[index - 1].trim().length < 1}
               />

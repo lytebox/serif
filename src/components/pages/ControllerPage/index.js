@@ -164,11 +164,17 @@ class ControllerPage extends React.Component {
                 <SongList
                   list={scheduledSongs.map(index => songsList[index])}
                   onClick={idx => this.selectScheduledSong(idx)}
-                  onButtonClick={idx => console.log("Button click", idx)}
+                  buttonOnClick={this.unscheduleSong}
+                  buttonLabel="-"
                   active={activeScheduleIndex}
                 />
               ) : leftPanelDisplay === "list" ? (
-                <SongList list={songsList} onClick={this.scheduleSong} />
+                <SongList
+                  list={songsList}
+                  onClick={idx => console.log(idx)}
+                  buttonOnClick={this.scheduleSong}
+                  buttonLabel="+"
+                />
               ) : (
                 <NewSongView onNewSong={this.handleNewSong} />
               )}

@@ -71,10 +71,10 @@ const ListItemWrapper = styled.div`
   }
 `;
 
-const ListItemButtonPlus = styled.div`
+const ListItemButton = styled.div`
   overflow: hidden;
   &:after {
-    content: "+";
+    content: "${prop => prop.label}";
     cursor: pointer;
     padding: 5px 25px;
     font-size: 3.5em;
@@ -96,5 +96,5 @@ export {
   ListWrapper,
   ListBackgroundColorWrapper,
   ListItemWrapper,
-  ListItemButtonPlus
+  ListItemButton
 };
