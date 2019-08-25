@@ -96,7 +96,7 @@ const SongList = props => {
 };
 
 const LyricList = props => {
-  const { list, active, onClick, buttonOnClick } = props;
+  const { list, active, onClick } = props;
 
   return (
     <ListContainer>

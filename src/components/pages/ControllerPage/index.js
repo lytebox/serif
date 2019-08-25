@@ -136,9 +136,10 @@ class ControllerPage extends React.Component {
   };
 
   renderLyric = index => {
-    if (typeof activeSong === "undefined") return;
     const { songsList, activeSongIndex } = this.state;
     const activeSong = songsList[activeSongIndex];
+
+    if (typeof activeSong === "undefined") return false;
     if (index < 0 || index > activeSong.lyrics.length - 1) return false;
 
     const currentLyric = activeSong.lyrics[index];
