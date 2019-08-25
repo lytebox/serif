@@ -9,8 +9,12 @@ class Navbar extends React.Component {
     return (
       <NavbarWrapper>
         <NavbarContainer>
+          <Link className="menu" to="//lytebox.studio">
+            Lytebox
+          </Link>
+          /
           <Link className="menu" to="/">
-            Project-Sinai
+            Serif
           </Link>
         </NavbarContainer>
         <div className="divider" />
