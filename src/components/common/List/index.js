@@ -59,22 +59,37 @@ const List = props => {
 };
 
 const SongList = props => {
-  const { list, active, onClick, buttonLabel, buttonOnClick } = props;
-
+  const {
+    list,
+    active,
+    onClick,
+    buttonLabel,
+    buttonOnClick,
+    searchFilter
+  } = props;
   return (
     <ListContainer>
       <ListWrapper>
         {list &&
-          list.map((item, index) => (
-            <SongListItem
-              {...item}
-              key={`sli${index}`}
-              onClick={() => onClick(index)}
-              active={index === active}
-              buttonLabel={buttonLabel}
-              buttonOnClick={() => buttonOnClick(index)}
-            />
-          ))}
+          list.map(
+            (item, index) =>
+              (!searchFilter ||
+                searchFilter === "" ||
+                (item &&
+                  item.title &&
+                  item.title
+                    .toLowerCase()
+                    .includes(searchFilter.toLowerCase()))) && (
+                <SongListItem
+                  {...item}
+                  key={`sli${index}`}
+                  onClick={() => onClick(index)}
+                  active={index === active}
+                  buttonLabel={buttonLabel}
+                  buttonOnClick={() => buttonOnClick(index)}
+                />
+              )
+          )}
       </ListWrapper>
     </ListContainer>
   );

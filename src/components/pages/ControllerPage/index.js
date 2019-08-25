@@ -17,7 +17,8 @@ import {
   CardBody,
   SongList,
   LyricList,
-  LyricCard
+  LyricCard,
+  TextInput
 } from "../../common";
 import { inputLyric, showLyric } from "../../../actions/lyricAction";
 import NewSongView from "../../views/NewSongView";
@@ -33,7 +34,8 @@ class ControllerPage extends React.Component {
       activeSongIndex: -1,
       activeScheduleIndex: -1,
       showing: "",
-      lyricIndex: 0
+      lyricIndex: 0,
+      searchFilter: ""
     };
   }
   componentDidMount() {
@@ -49,6 +51,12 @@ class ControllerPage extends React.Component {
     });
 
     document.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        document.activeElement.blur();
+      }
+
+      if (document.activeElement.tagName.toLowerCase() === "input") return;
+
       console.log(e);
       if (e.key === "ArrowUp") {
         this.renderLyric(this.state.lyricIndex - 1);
@@ -64,6 +72,18 @@ class ControllerPage extends React.Component {
           this.setState({ showing: "" });
           this.props.showLyric("");
         }
+      } else if (e.key === "/") {
+        return e.preventDefault();
+      }
+    });
+
+    document.addEventListener("keyup", e => {
+      if (document.activeElement.tagName.toLowerCase() === "input") return;
+
+      if (e.key === "/") {
+        const searchBox = document.getElementById("searchBox");
+        searchBox.focus();
+        this.setState({ searchFilter: "" });
       }
     });
   }
@@ -116,6 +136,7 @@ class ControllerPage extends React.Component {
   };
 
   renderLyric = index => {
+    if (typeof activeSong === "undefined") return;
     const { songsList, activeSongIndex } = this.state;
     const activeSong = songsList[activeSongIndex];
     if (index < 0 || index > activeSong.lyrics.length - 1) return false;
@@ -136,7 +157,8 @@ class ControllerPage extends React.Component {
       activeSongIndex,
       activeScheduleIndex,
       lyricIndex,
-      showing
+      showing,
+      searchFilter
     } = this.state;
     return (
       <ControllerPageContainer>
@@ -169,12 +191,23 @@ class ControllerPage extends React.Component {
                   active={activeScheduleIndex}
                 />
               ) : leftPanelDisplay === "list" ? (
-                <SongList
-                  list={songsList}
-                  onClick={idx => console.log(idx)}
-                  buttonOnClick={this.scheduleSong}
-                  buttonLabel="+"
-                />
+                <React.Fragment>
+                  <TextInput
+                    placeholder="Press / to search..."
+                    onChange={e =>
+                      this.setState({ searchFilter: e.target.value })
+                    }
+                    value={searchFilter}
+                    id="searchBox"
+                  />
+                  <SongList
+                    list={songsList}
+                    onClick={idx => console.log(idx)}
+                    buttonOnClick={this.scheduleSong}
+                    buttonLabel="+"
+                    searchFilter={searchFilter}
+                  />
+                </React.Fragment>
               ) : (
                 <NewSongView onNewSong={this.handleNewSong} />
               )}
